@@ -1,9 +1,24 @@
 import React, {Component} from 'react';
+import './Recipe.css'
 
-class Recipe extends Component{
+class Recipe extends Component {
     render() {
+        const {title, instructions, img_url} = this.props;
+        const ingredients = this.props.ingredients.map((ing, index) => (<li key={index}>{ing}</li>));
         return (
-            <div>Recipe</div>
+            <div className="recipe-card">
+                <div className="recipe-img">
+                    <img src={img_url} alt=""/>
+                </div>
+                <div className="recipe-card-content">
+                    <h3 className="recipe-title">Recipe {title}</h3>
+                    <h4>Ingredients:</h4>
+                    <ul>{ingredients}</ul>
+                    <h4>Instructions:</h4>
+                    <p>{instructions}</p>
+                </div>
+
+            </div>
         );
     }
 }
