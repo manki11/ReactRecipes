@@ -3,12 +3,12 @@ import './Recipe.css'
 
 class Recipe extends Component {
     render() {
-        const {title, instructions, img_url} = this.props;
+        const {title, instructions, img} = this.props;
         const ingredients = this.props.ingredients.map((ing, index) => (<li key={index}>{ing}</li>));
         return (
             <div className="recipe-card">
                 <div className="recipe-img">
-                    <img src={img_url} alt=""/>
+                    <img src={img} alt=""/>
                 </div>
                 <div className="recipe-card-content">
                     <h3 className="recipe-title">{title}</h3>
