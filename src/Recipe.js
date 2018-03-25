@@ -3,7 +3,7 @@ import './Recipe.css'
 
 class Recipe extends Component {
     render() {
-        const {title, instructions, img} = this.props;
+        const {title, instructions, img, id, onDelete} = this.props;
         const ingredients = this.props.ingredients.map((ing, index) => (<li key={index}>{ing}</li>));
         return (
             <div className="recipe-card">
@@ -16,8 +16,8 @@ class Recipe extends Component {
                     <ul>{ingredients}</ul>
                     <h4>Instructions:</h4>
                     <p>{instructions}</p>
+                    <button type="button" onClick={()=> onDelete(id)}>DELETE</button>
                 </div>
-
             </div>
         );
     }
