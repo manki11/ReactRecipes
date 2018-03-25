@@ -11,21 +11,21 @@ class RecipeApp extends Component {
         this.state={
             recipes: [
                 {
-                    id:1,
+                    id:0,
                     title: 'Spaghetti',
                     instructions: "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
                     ingredients: ["pasta", "8 cups water", "1 box spaghetti"],
                     img: "https://www.cookingclassy.com/wp-content/uploads/2012/11/spaghetti+with+meat+sauce11.jpg"
                 },
                 {
-                    id:2,
+                    id:1,
                     title: "Milkshake",
                     instructions: "Combine ice cream and milk.  Blend until creamy",
                     ingredients: ["2 Scoops Ice cream", "8 ounces milk"],
                     img: "https://fthmb.tqn.com/sHI14VwgA58daPo0TSY-ishRJk8=/2122x1415/filters:fill(auto,1)/172192393-56a20fea3df78cf7727188b7.jpg"
                 },
                 {
-                    id:3,
+                    id:2,
                     title: "Avocado Toast",
                     instructions: "Toast bread.  Slice avocado and spread on bread.  Add salt, oil, and pepper to taste.",
                     ingredients: ["2 slices of bread", "1 avocado", "1 tablespoon olive oil", "1 pinch of salt", "pepper"],
@@ -34,12 +34,25 @@ class RecipeApp extends Component {
             ],
             nextRecipeId:3,
         }
+
+        this.handleSave= this.handleSave.bind(this);
     }
+
+    handleSave(recipe){
+        this.setState((prevState, props) => {
+            const newRecipe = {...recipe, id: this.state.nextRecipeId};
+            return {
+                nextRecipeId: prevState.nextRecipeId+1,
+                recipes: [...this.state.recipes, newRecipe]
+            }
+        })
+    }
+
     render() {
         return (
             <div>
                 <Navbar/>
-                <RecipeInput/>
+                <RecipeInput onSave={this.handleSave}/>
                 <RecipeList recipes={this.state.recipes}/>
             </div>
         );
